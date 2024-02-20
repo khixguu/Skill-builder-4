@@ -20,6 +20,7 @@ public class Grok
      */
     public Grok()
     {
+        this.isAlive = true;
         setPowerLevel(DEFAULT_POWER_LEVEL);
     }
 
@@ -30,6 +31,7 @@ public class Grok
      */
     public Grok(int powerLevel)
     {
+        this.isAlive = true;
         setPowerLevel(powerLevel);
     }
 
@@ -46,7 +48,7 @@ public class Grok
 
     public boolean isDead()
     {
-        // TODO: replace this line with your code here
+        return !isAlive;
     }
 
     // mutator methods
@@ -57,7 +59,10 @@ public class Grok
      */
     public void setPowerLevel(int powerLevel)
     {
-        this.powerLevel = powerLevel;
+        if(!isDead()) {
+            this.powerLevel = Math.max(0,Math.min(powerLevel,MAX_POWER_LEVEL));
+            this.isAlive = this.powerLevel > 0;
+        }
     }
 
     /*
